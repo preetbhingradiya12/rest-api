@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest src/app.test.js",
-    "start": "node src"
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "",
