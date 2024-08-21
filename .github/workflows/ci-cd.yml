@@ -18,9 +18,9 @@ jobs:
     - name: Run test
       run: npm test
 
-  deploye:
-    needs: [build]
+  deploy:
     runs-on: ubuntu-latest
+    needs: [build]
 
     steps:
     - uses: actions/checkout@v3
