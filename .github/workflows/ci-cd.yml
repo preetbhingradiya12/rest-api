@@ -24,7 +24,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: preet/heroku-deploy@3.12.12
+    - uses: akhileshns/heroku-deploy@v1.8.5
       with:
         heroku-api-key: ${{ secrets.HEROKU_API_KEY }}
         heroku_app-name: 'node-github-action'
