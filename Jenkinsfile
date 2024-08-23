@@ -1,5 +1,8 @@
 pipeline { 
     agent any
+    environment {
+        PATH = "/home/crawlapps/.nvm/versions/node/v20.12.0/bin:${env.PATH}"
+    }
     stages{
         stage("Checkout"){
             steps{
@@ -7,9 +10,15 @@ pipeline {
             }
         }
 
+        stage('Print Environment') {
+            steps { 
+                sh 'which node'
+                sh 'which npm'
+            }
+        }
+
         stage('Update npm') {
             steps {
-                // Update npm to the latest version
                 sh 'npm install -g npm@latest'
             }
         }
