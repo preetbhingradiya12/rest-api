@@ -11,23 +11,24 @@ pipeline {
         }
 
         stage('Print Environment') {
-            steps { 
-                sh 'which node'
-                sh 'which npm'
-            }
-        }
-
-        stage('Update npm') {
             steps {
-                sh 'npm install -g npm@latest'
+                sh '''
+                echo "Updating npm to the latest version"
+                npm install -g npm@latest
+                '''
             }
         }
 
-        stage("Test"){
-            steps{
+
+        stage("Test") {
+            steps {
                 echo 'Testing...'
-                sh 'npm install'
-                sh 'npm test'
+                sh '''
+                echo "Installing dependencies"
+                npm install
+                echo "Running tests"
+                npm test
+                '''
             }
         }
     }
