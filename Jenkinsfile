@@ -19,8 +19,6 @@ pipeline {
                         node --version
                         echo "NPM version:"
                         npm --version
-                        echo "Updating npm to the latest version"
-                        npm install -g npm@latest
                         '''
                     } catch (Exception e) {
                         echo "Error in Print Environment stage: ${e.getMessage()}"
