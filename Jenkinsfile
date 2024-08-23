@@ -11,25 +11,39 @@ pipeline {
         }
 
         stage('Print Environment') {
-            steps {
-                sh '''
-                echo "Updating npm to the latest version"
-                npm install -g npm@latest
-                '''
-            }
+                script {
+                    try {
+                        sh '''
+                        echo "Node version:"
+                        node --version
+                        echo "NPM version:"
+                        npm --version
+                        '''
+                    } catch (Exception e) {
+                        echo "Error in Print Environment stage: ${e.getMessage()}"
+                        throw e
+                    }
+                }
         }
 
 
         stage("Test") {
             steps {
-                sh '''
-                source /home/crawlapps/.nvm/nvm.sh
-                echo 'Testing...'
-                echo "Installing dependencies"
-                npm install
-                echo "Running tests"
-                npm test
-                '''
+                script {
+                    try {
+                        sh '''
+                        source /home/crawlapps/.nvm/nvm.sh
+                        echo 'Testing...'
+                        echo "Installing dependencies"
+                        npm install --verbose
+                        echo "Running tests"
+                        npm test --verbose
+                        '''
+                    } catch (Exception e) {
+                        echo "Error in Test stage: ${e.getMessage()}"
+                        throw e
+                    }
+                }
             }
         }
     }
