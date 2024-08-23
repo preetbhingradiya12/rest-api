@@ -22,8 +22,9 @@ pipeline {
 
         stage("Test") {
             steps {
-                echo 'Testing...'
                 sh '''
+                source /home/crawlapps/.nvm/nvm.sh
+                echo 'Testing...'
                 echo "Installing dependencies"
                 npm install
                 echo "Running tests"
